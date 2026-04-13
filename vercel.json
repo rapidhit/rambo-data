@@ -1,8 +1,0 @@
-{
-  "version": 2,
-  "routes": [
-    { "src": "/api/offers", "dest": "/api/offers.js" },
-    { "src": "/api/order", "dest": "/api/order.js" },
-    { "src": "/(.*)", "dest": "/public/index.html" }
-  ]
-}
