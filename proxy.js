@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  const API_KEY = 'dk_e87pONcP0e0NxTfZg-gvEwwpVf025Czu';
+  const API_KEY = 'dk__M_4rn3ZGc27bnngJpskOtyy5zPb23-e';
   const path = req.query.path;
 
   const authHeaders = {
