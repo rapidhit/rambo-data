@@ -7,17 +7,19 @@ export default async function handler(req, res) {
   const API_KEY = process.env.DIGIMALL_API_KEY;
   const path = req.query.path;
 
+  const authHeaders = {
+    'x-api-key': API_KEY,
+    'next-auth.session-token': API_KEY,
+    'Authorization': `Bearer ${API_KEY}`,
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  };
+
   try {
     if (path === 'offers') {
       const { network } = req.query;
       const url = `https://www.digi-mall.app/api/v1/offers${network ? `?network=${network}` : ''}`;
-      const response = await fetch(url, {
-        headers: {
-          'x-api-key': API_KEY,
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      });
+      const response = await fetch(url, { headers: authHeaders });
       const data = await response.json();
       return res.status(response.status).json(data);
     }
@@ -26,11 +28,7 @@ export default async function handler(req, res) {
       if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
       const response = await fetch('https://www.digi-mall.app/api/v1/orders', {
         method: 'POST',
-        headers: {
-          'x-api-key': API_KEY,
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
+        headers: authHeaders,
         body: JSON.stringify(req.body)
       });
       const data = await response.json();
