@@ -13,7 +13,7 @@ export default async function handler(req, res) {
       const url = `https://www.digi-mall.app/api/v1/offers${network ? `?network=${network}` : ''}`;
       const response = await fetch(url, {
         headers: {
-          'next-auth.session-token': API_KEY,
+          'x-api-key': API_KEY,
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         }
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
       const response = await fetch('https://www.digi-mall.app/api/v1/orders', {
         method: 'POST',
         headers: {
-          'next-auth.session-token': API_KEY,
+          'x-api-key': API_KEY,
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
