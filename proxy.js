@@ -8,11 +8,10 @@ export default async function handler(req, res) {
   const path = req.query.path;
 
   const authHeaders = {
-    'x-api-key': API_KEY,
     'next-auth.session-token': API_KEY,
-    'Authorization': `Bearer ${API_KEY}`,
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
+    'Cookie': `next-auth.session-token=${API_KEY}`,
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
   };
 
   try {
